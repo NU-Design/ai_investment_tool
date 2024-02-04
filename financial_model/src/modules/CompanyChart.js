@@ -47,7 +47,7 @@ const ProKLineChart = ({ companySymbol }) => {
         width: "70vw",
         margin: "0 auto",
         alignItems: "center",
-        height: "40vw",
+        height: "35vw",
       }}
     ></div>
   );
