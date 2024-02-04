@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 export const getOneCompanyQuotes = async (symbol) => {
   const apiUrl = `https://backend.ymyc.ai/api/market_data/${symbol}`;
@@ -9,9 +9,11 @@ export const getOneCompanyQuotes = async (symbol) => {
     }
     return [];
   } catch (error) {
-    console.error('Error fetching data: ', error);
+    console.error("Error fetching data: ", error);
     return [];
   }
 };
 
-export const getSearchCompanyReq = () => { return []; };
+export const getSearchCompanyReq = () => {
+  return [];
+};
