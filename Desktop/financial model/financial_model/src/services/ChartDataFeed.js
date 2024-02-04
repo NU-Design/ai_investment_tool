@@ -3,10 +3,10 @@ import {
   DatafeedSubscribeCallback,
   Period,
   SymbolInfo,
-} from '@klinecharts/pro';
-import { KLineData } from 'klinecharts';
-import { getOneCompanyQuotes, getSearchCompanyReq } from './CompanyDataApi';
-import { GetSearchCompanyResponseModel } from '../models/CompanyModel';
+} from "@klinecharts/pro";
+import { KLineData } from "klinecharts";
+import { getOneCompanyQuotes, getSearchCompanyReq } from "./CompanyDataApi";
+import { GetSearchCompanyResponseModel } from "../models/CompanyModel";
 
 export default class ChartDatafeed {
   constructor(params, navigate) {
@@ -15,11 +15,13 @@ export default class ChartDatafeed {
   }
 
   async searchSymbols(search) {
-    const matchedCompanies = await getSearchCompanyReq({ keyword: search || '' });
+    const matchedCompanies = await getSearchCompanyReq({
+      keyword: search || "",
+    });
 
     return matchedCompanies.map((matchedCompanyInfo) => {
       return {
-        exchange: 'US',
+        exchange: "US",
         ticker: matchedCompanyInfo.company_symbol,
       };
     });
@@ -27,13 +29,11 @@ export default class ChartDatafeed {
 
   async getHistoryKLineData(symbolInfo, period, from, to) {
     const { stockSymbol: currentPageSymbol } = this.params;
-    if (symbolInfo.ticker !== currentPageSymbol) {
-      this.navigate(`/stock/${symbolInfo.ticker}`);
-      return [];
-    }
 
-    const data = await getOneCompanyQuotes({ symbol: symbolInfo.ticker });
-
+    const data = await getOneCompanyQuotes(symbolInfo.ticker);
+    // const data = await getOneCompanyQuotes({ symbol: symbolInfo.ticker });
+    console.log("dddddd", data);
+    console.log("cccc", symbolInfo.ticker);
     return data.map((item) => ({
       close: item.close,
       high: item.high,
@@ -43,12 +43,8 @@ export default class ChartDatafeed {
       volume: parseInt(item.volume, 10),
     }));
   }
-    
-  subscribe(symbol, period, callback) {
-  
-  }
 
-  unsubscribe(symbol, period) {
-        
-  }
+  subscribe(symbol, period, callback) {}
+
+  unsubscribe(symbol, period) {}
 }

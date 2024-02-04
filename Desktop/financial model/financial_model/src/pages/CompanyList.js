@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import fetchAllCompaniesInfo from '../services/fetchAllCompaniesInfo'; 
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import fetchAllCompaniesInfo from "../services/fetchAllCompaniesInfo";
 
 const CompanyList = () => {
   const [companies, setCompanies] = useState([]);
@@ -8,13 +8,13 @@ const CompanyList = () => {
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchAllCompaniesInfo();
-      setCompanies(data); 
+      setCompanies(data);
     };
     fetchData();
   }, []);
 
   return (
-      <div className="companyList">
+    <div className="companyList">
       <table className="companyTable">
         <thead className="companyTableHead">
           <tr>
@@ -27,8 +27,17 @@ const CompanyList = () => {
           {companies.map((company, index) => (
             <tr key={index} className="companyTableData">
               <td>{company.companyInfo.company_name}</td>
-              <td>{company.companyInfo.tags.slice(0, 4).map(tag => tag.tag_en).join(", ")}</td>
-              <td><Link to={`/${company.companyInfo.company_name}`}>{company.companyInfo.company_name}</Link></td>
+              <td>
+                {company.companyInfo.tags
+                  .slice(0, 4)
+                  .map((tag) => tag.tag_en)
+                  .join(", ")}
+              </td>
+              <td>
+                <Link to={`/${company.companyInfo.company_symbol}`}>
+                  {company.companyInfo.company_name}
+                </Link>
+              </td>
             </tr>
           ))}
         </tbody>
