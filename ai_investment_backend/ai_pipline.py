@@ -19,7 +19,7 @@ def store_data_in_db():
     astra_db_store = AstraDBVectorStore(
         token=ASTRA_DB_APPLICATION_TOKEN,
         api_endpoint=ASTRA_DB_API_ENDPOINT,
-        collection_name="test",  # 替换为你的集合名称
+        collection_name="your_collection_name",  # 替换为你的集合名称
         embedding_dimension=1536,  # 根据你使用的模型可能需要调整
     )
 
