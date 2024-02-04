@@ -65,7 +65,7 @@ const ChatbotComponent = ({ triggerIconUrl, companySymbol }) => {
     };
     setMessages((prevMessages) => [...prevMessages, replyMessage]);
     setIsLoading(false);
-    setIsOpen(false); // 关闭聊天窗口
+    // setIsOpen(false); // 关闭聊天窗口
   };
 
   const toggleChatbot = () => setIsOpen(!isOpen);
