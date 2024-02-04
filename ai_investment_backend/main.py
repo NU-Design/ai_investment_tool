@@ -4,6 +4,8 @@ from company_outlook import get_company_outlook
 from company_social_sentiment import get_social_sentiment_data
 from company_info import get_company_info_data
 from company_news import get_company_news_data
+from target_price_api import get_price_target
+from analyst_estimate_api import get_analyst_estimate
 import os
 from dotenv import load_dotenv
 
@@ -34,9 +36,11 @@ def index():
     # return get_company_news_data(company_symbol)
     # return get_company_outlook(company_symbol, FMP_API_KEY)
     # return get_company_info_data(company_symbol)
+    # return get_social_sentiment_data(company_symbol, FMP_API_KEY)
+    # return get_price_target(company_symbol, FMP_API_KEY)
 
-    return get_social_sentiment_data(company_symbol, FMP_API_KEY)
-
+    return get_analyst_estimate(company_symbol, FMP_API_KEY)
+   
 
 @app.route("/hello/<word>")
 def hello(word):
