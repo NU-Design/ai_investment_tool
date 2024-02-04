@@ -14,10 +14,11 @@ const CompanyPage = () => {
         }
         fetchCompanyData();
     }, [symbol]);
+    console.log(JSON.stringify(companyData));
 
     return (
         <div>
-            <h1>{companyData.companyInfo.company_name}</h1>
+            {/* <h1>{companyData.companyInfo.company_name}</h1> */}
             <CompanyChart />
             <div>
                 <h1>Company Analysis</h1>
