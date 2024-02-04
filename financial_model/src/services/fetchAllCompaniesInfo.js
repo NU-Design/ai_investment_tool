@@ -2,7 +2,7 @@ import axios from 'axios';
 import symbols from '../symbol.json';
 
 const fetchCompanyInfo = async (symbol) => {
-    const apiUrl = `https://backend.ymyc.ai/api/companies/company_and_peer_quote/${symbol}`;
+    const apiUrl = `https://backend.ymyc.ai/api/companies/company_infos/${symbol}`;
     try {
         const response = await axios.get(apiUrl);
         return response.data;

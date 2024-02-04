@@ -27,16 +27,17 @@ const CompanyList = () => {
         <tbody  className="thead">
           {companies.map((company, index) => (
             <tr key={index}>
-              <td>{company.companyInfo.company_name}</td>
+              <td>{company.company_name}</td>
               <td>
-                {company.companyInfo.tags
+                {
+                  company.tags
                   .slice(0, 4)
                   .map((tag) => tag.tag_en)
                   .join(", ")}
               </td>
               <td>
-                <Link to={`/${company.companyInfo.company_symbol}`} className="btn btn-dark">
-                  {company.companyInfo.company_name}
+                <Link to={`/${company.company_symbol}`} className="btn btn-dark">
+                  {company.company_name}
                 </Link>
               </td>
             </tr>
