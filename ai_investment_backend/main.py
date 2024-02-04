@@ -1,6 +1,6 @@
 from glob import escape
 from flask import Flask
-from earnings_call import get_earnings_call_data
+from company_outlook import get_company_outlook
 import os
 from dotenv import load_dotenv
 
@@ -22,7 +22,7 @@ def display_company(company_name):
 @app.route("/")
 def index():
     FMP_API_KEY = os.getenv("FMP_API_KEY")
-    return get_earnings_call_data("AAPL", FMP_API_KEY)
+    return get_company_outlook()
 
 
 @app.route("/hello/")
