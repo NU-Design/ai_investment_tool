@@ -15,9 +15,9 @@ def update_company(company_symbol):
 def retrieve_company_report(company_symbol):
     return f'Retrieving the company report of {escape(company_symbol)}'
 
-@app.post('/company_info/<company_symbol>')
-def request_company_info(company_symbol):
-    return f'Requsting the company info for {escape(company_symbol)}'
+@app.post('/request_info')
+def request_info():
+    return f'Requsting the info.'
 
 @app.route('/')
 def index():
