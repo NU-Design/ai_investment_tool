@@ -40,6 +40,8 @@ def store_data_in_db(company_symbol):
     # 注意: 这一步实际上是在为文档创建向量表示并存储这些向量
     # 如果你只想简单地存储文档数据，可能需要调整这一步
     VectorStoreIndex.from_documents(documents, storage_context=storage_context)
+    
+    
 
     print("文档已成功存储到数据库。")
 
