@@ -4,7 +4,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import MessageIcon from "@mui/icons-material/Message"; // 假设你使用MUI图标作为消息图标
 import CircularProgress from "@mui/material/CircularProgress";
 
-const ChatbotComponent = ({ triggerIconUrl }) => {
+const ChatbotComponent = ({ triggerIconUrl, companySymbol }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState("");
@@ -34,7 +34,7 @@ const ChatbotComponent = ({ triggerIconUrl }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        company_symbol: "MSFT", // 示例，根据需要调整
+        company_symbol: companySymbol,
         query: inputValue,
       }),
     });

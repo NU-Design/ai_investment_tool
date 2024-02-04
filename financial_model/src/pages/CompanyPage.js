@@ -42,7 +42,7 @@ const CompanyPage = () => {
       {" "}
       {/* Use Box to wrap your content with some padding */}
       <p> </p>
-      <ChatbotComponent />
+      <ChatbotComponent companySymbol={symbol} />
       <h1>{companyName}</h1>
       <Box sx={{ marginY: 2 }}>
         {" "}
