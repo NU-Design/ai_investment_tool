@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import SendIcon from "@mui/icons-material/Send";
 import CloseIcon from "@mui/icons-material/Close";
 import MessageIcon from "@mui/icons-material/Message"; // 假设你使用MUI图标作为消息图标
+import CircularProgress from "@mui/material/CircularProgress";
 
 const ChatbotComponent = ({ triggerIconUrl }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [inputValue, setInputValue] = useState("");
-
+  const [isLoading, setIsLoading] = useState(false);
   // 初始化问候消息
   useEffect(() => {
     if (isOpen && messages.length === 0) {
@@ -23,7 +24,7 @@ const ChatbotComponent = ({ triggerIconUrl }) => {
 
   const sendMessage = async () => {
     if (inputValue.trim() === "") return;
-
+    setIsLoading(true);
     const userMessage = { sender: "user", text: inputValue };
     setMessages((prevMessages) => [...prevMessages, userMessage]);
 
@@ -46,6 +47,8 @@ const ChatbotComponent = ({ triggerIconUrl }) => {
     };
     setMessages((prevMessages) => [...prevMessages, botMessage]);
     setInputValue("");
+    setIsLoading(false); // Set loading to false once response is received
+    setInputValue("");
   };
 
   return (
@@ -62,12 +65,16 @@ const ChatbotComponent = ({ triggerIconUrl }) => {
             cursor: "pointer",
             boxShadow: "0 0 10px rgba(0,0,0,0.5)",
             outline: "none",
-          }}>
-          {/* 如果你有一个特定的消息图标URL，可以直接在这里使用它 */}
+            backgroundColor: "white",
+          }}
+        >
+          {/* Icon made transparent, showing only the background */}
           <MessageIcon
-            style={{ color: "rgba(0,0,0,0)", width: "100%", height: "100%" }}
-          />{" "}
-          {/* 使图标透明，仅显示背景图 */}
+            style={{
+              width: "80%",
+              height: "100%",
+            }}
+          />
         </button>
       )}
       {isOpen && (
@@ -80,18 +87,20 @@ const ChatbotComponent = ({ triggerIconUrl }) => {
             borderRadius: "5px",
             boxShadow: "0 0 10px rgba(0,0,0,0.5)",
             outline: "none",
-          }}>
+          }}
+        >
           <button
             onClick={toggleChatbot}
             style={{
               background: "transparent",
               border: "none",
               cursor: "pointer",
-              color: "black",
+              color: "white", // Adjusted for visibility against the chat background
               position: "absolute",
               top: 10,
               right: 10,
-            }}>
+            }}
+          >
             <CloseIcon />
           </button>
           <div
@@ -100,28 +109,45 @@ const ChatbotComponent = ({ triggerIconUrl }) => {
               overflowY: "auto",
               backgroundColor: "#3B3F48",
               padding: 5,
-            }}>
+            }}
+          >
             {messages.map((msg, index) => (
               <div
                 key={index}
                 style={{
                   display: "flex",
-                  justifyContent: "flex-start",
+                  justifyContent:
+                    msg.sender === "user" ? "flex-end" : "flex-start", // Adjust alignment based on the sender
                   padding: "5px",
                   textAlign: "left",
-                }}>
+                }}
+              >
                 <p
                   style={{
                     background: msg.sender === "user" ? "#e3a738" : "#adade8",
+                    color: "#ffffff", // Ensure text is readable
                     display: "inline-block",
                     padding: "10px 15px",
                     borderRadius: "20px",
                     margin: 0,
-                  }}>
+                  }}
+                >
                   {msg.text}
                 </p>
               </div>
             ))}
+            {isLoading && (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  padding: "10px",
+                }}
+              >
+                <CircularProgress style={{ color: "#ffffff" }} />{" "}
+                {/* Adjusted color for visibility */}
+              </div>
+            )}
           </div>
           <div
             style={{
@@ -130,7 +156,8 @@ const ChatbotComponent = ({ triggerIconUrl }) => {
               backgroundColor: "lightblue",
               padding: "10px",
               borderRadius: "5px",
-            }}>
+            }}
+          >
             <input
               type="text"
               value={inputValue}
@@ -151,7 +178,8 @@ const ChatbotComponent = ({ triggerIconUrl }) => {
                 background: "transparent",
                 border: "none",
                 cursor: "pointer",
-              }}>
+              }}
+            >
               <SendIcon />
             </button>
           </div>
