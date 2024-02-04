@@ -46,7 +46,7 @@ def store_data_in_db(company_symbol):
     print("文档已成功存储到数据库。")
 
 
-def query_data_in_db(query_string):
+def query_data_in_db(query_string, company_symbol):
 
     # 从环境变量获取数据库配置
     ASTRA_DB_APPLICATION_TOKEN = os.getenv("ASTRA_DB_APPLICATION_TOKEN")
@@ -68,6 +68,7 @@ def query_data_in_db(query_string):
 
     # 执行查询
     # query_string = "For MSFT. Evaluate the capital allocation strategy including details on dividends, share repurchase plans, and significant investments outlined."
+    query_string =f"For {company_symbol} " +  query_string + " ----do not give me the name of people just talk about the event --- give some number to supoort answer ---Prioritize quantitative answers with number -- Give some sensory data of financial reports, sentiment analysis data --more than 15 sentence to explain"
     response = query_engine.query(query_string)
 
     print("查询结果:", response.response)

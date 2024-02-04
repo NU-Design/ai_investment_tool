@@ -10,9 +10,12 @@ from analyst_estimate_api import get_analyst_estimate
 import os
 from dotenv import load_dotenv
 from info_aggregatpr import generate_all_company_data
+from flask_cors import CORS
+
 
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.post("/company/<company_symbol>")
@@ -28,7 +31,7 @@ def retrieve_company_report():
     query_data = data.get('query')
     #in quarter 4, year 2023, Earnings Conference Call how MSFT helping customer use the breadth and depth of Microsoft Cloud. 
     #"-in quarter 4, year 2023, how LinkedIn's revenue and detail --give everything about linkedin  ----do not give me the name of people just talk about the event --- give some number to supoort answer"
-    report = query_data_in_db(query_data)
+    report = query_data_in_db(query_data, company_symbol)
 
     #query_data_in_db("-in quarter 4, year 2023, Earnings Conference Call how MSFT helping customer use the breadth and depth of Microsoft Cloud. ----do not give me the name of people just talk about the event --- give some number to supoort answer")
     return jsonify({"message": f"Retrieving the company report for {company_symbol}", "report": report})
