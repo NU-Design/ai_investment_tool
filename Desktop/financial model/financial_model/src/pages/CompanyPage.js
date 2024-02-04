@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CompanyChart from "../modules/CompanyChart";
-import CompanyDescription from "../modules/CompanyDescription";
+import ChatBot from "../modules/ChatBot";
 import { getOneCompanyQuotes } from "../services/CompanyDataApi";
 
 const CompanyPage = () => {
@@ -29,8 +29,7 @@ const CompanyPage = () => {
 
       <CompanyChart companySymbol={symbol} />
       <div>
-        <h1>Company Analysis</h1>
-        <CompanyDescription />
+        <Button a href="/ChatBot">Ask Me</Button>
       </div>
     </div>
   );
