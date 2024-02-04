@@ -62,8 +62,7 @@ const ChatbotComponent = ({ triggerIconUrl }) => {
             cursor: "pointer",
             boxShadow: "0 0 10px rgba(0,0,0,0.5)",
             outline: "none",
-          }}
-        >
+          }}>
           {/* 如果你有一个特定的消息图标URL，可以直接在这里使用它 */}
           <MessageIcon
             style={{ color: "rgba(0,0,0,0)", width: "100%", height: "100%" }}
@@ -81,8 +80,7 @@ const ChatbotComponent = ({ triggerIconUrl }) => {
             borderRadius: "5px",
             boxShadow: "0 0 10px rgba(0,0,0,0.5)",
             outline: "none",
-          }}
-        >
+          }}>
           <button
             onClick={toggleChatbot}
             style={{
@@ -93,8 +91,7 @@ const ChatbotComponent = ({ triggerIconUrl }) => {
               position: "absolute",
               top: 10,
               right: 10,
-            }}
-          >
+            }}>
             <CloseIcon />
           </button>
           <div
@@ -103,8 +100,7 @@ const ChatbotComponent = ({ triggerIconUrl }) => {
               overflowY: "auto",
               backgroundColor: "lightblue",
               padding: 5,
-            }}
-          >
+            }}>
             {messages.map((msg, index) => (
               <div
                 key={index}
@@ -113,8 +109,7 @@ const ChatbotComponent = ({ triggerIconUrl }) => {
                   justifyContent: "flex-start",
                   padding: "5px",
                   textAlign: "left",
-                }}
-              >
+                }}>
                 <p
                   style={{
                     background: msg.sender === "user" ? "#BBBEC7" : "#E6E6FA",
@@ -122,8 +117,7 @@ const ChatbotComponent = ({ triggerIconUrl }) => {
                     padding: "10px 15px",
                     borderRadius: "20px",
                     margin: 0,
-                  }}
-                >
+                  }}>
                   {msg.text}
                 </p>
               </div>
@@ -136,8 +130,7 @@ const ChatbotComponent = ({ triggerIconUrl }) => {
               backgroundColor: "lightblue",
               padding: "10px",
               borderRadius: "5px",
-            }}
-          >
+            }}>
             <input
               type="text"
               value={inputValue}
@@ -158,8 +151,7 @@ const ChatbotComponent = ({ triggerIconUrl }) => {
                 background: "transparent",
                 border: "none",
                 cursor: "pointer",
-              }}
-            >
+              }}>
               <SendIcon />
             </button>
           </div>
