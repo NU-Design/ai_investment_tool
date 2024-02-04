@@ -1,0 +1,23 @@
+{
+  "name": "ai_investment_tool",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NU-Design/ai_investment_tool.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NU-Design/ai_investment_tool/issues"
+  },
+  "homepage": "https://github.com/NU-Design/ai_investment_tool#readme",
+  "dependencies": {
+    "react-scripts": "^5.0.1",
+    "start": "^5.1.0"
+  }
+}

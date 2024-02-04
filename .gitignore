@@ -37,3 +37,4 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+node_modules

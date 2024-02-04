@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CompanyChart from "../modules/CompanyChart";
 import { getOneCompanyQuotes } from "../services/CompanyDataApi";
+import CompanyDescription from "../modules/CompanyDescription";
 
 import Box from "@mui/material/Box"; // Import Box from MUI
 
@@ -52,6 +53,11 @@ const CompanyPage = () => {
         {" "}
         {/* Additional separation for clarity */}
         <CompanyNewsHeadlineList company_symbol={symbol} />
+      </Box>
+      <Box sx={{ marginY: 2 }}>
+        {" "}
+        {/* Separate chart and news list with margin */}
+        <CompanyDescription symbol={symbol} />
       </Box>
       <ChatbotComponent />
     </Box>
