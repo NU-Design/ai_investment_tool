@@ -40,11 +40,7 @@ const ProKLineChart = ({ companySymbol }) => {
   }, [companySymbol, params, navigate]);
 
   return (
-    <div
-      ref={containerRef}
-      id="container"
-      style={{ width: "70vw", height: "70vh" }}
-    ></div>
+    <div ref={containerRef} id="container" style={{ width: "70vw" }}></div>
   );
 };
 
