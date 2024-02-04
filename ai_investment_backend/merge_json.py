@@ -1,20 +1,25 @@
+from datetime import datetime  # 这里导入的是正确的
 from earnings_call import get_earnings_call_data
 from company_outlook import get_company_outlook
+import json
+import uuid
 
 
-def merge_earnings_and_outlook(symbols, api_key):
-    merged_data = []
-    for symbol in symbols:
-        earnings_data = get_earnings_call_data(symbol, api_key)
-        outlook_data = get_company_outlook(symbol, api_key)
+def merge_and_save_data(symbol, api_key):
+    # 获取数据
+    earnings_data = get_earnings_call_data(symbol, api_key)
+    company_outlook_data = get_company_outlook(symbol, api_key)
 
-        # 根据需要合并数据
-        merged_entry = {
-            "symbol": symbol,
-            "earnings": earnings_data,
-            "outlook": outlook_data,
-        }
+    # 合并数据
+    merged_data = {"earnings": earnings_data, "company_outlook": company_outlook_data}
 
-        merged_data.append(merged_entry)
+    # 生成文件名
+    date_str = datetime.now().strftime("%Y-%m-%d")
+    unique_id = uuid.uuid4().hex
+    filename = f"./data/{date_str}_{unique_id}_{symbol}.json"
 
-    return merged_data
+    # 保存为 JSON 文件
+    with open(filename, "w") as f:
+        json.dump(merged_data, f)
+
+    return filename  # 返回文件名以供参考
