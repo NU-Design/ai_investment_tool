@@ -37,6 +37,34 @@ def store_data_in_db():
     print("文档已成功存储到数据库。")
 
 
+def query_data_in_db():
+
+    # 从环境变量获取数据库配置
+    ASTRA_DB_APPLICATION_TOKEN = os.getenv("ASTRA_DB_APPLICATION_TOKEN")
+    ASTRA_DB_API_ENDPOINT = os.getenv("ASTRA_DB_API_ENDPOINT")
+    OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
+    astra_db_store = AstraDBVectorStore(
+        token=ASTRA_DB_APPLICATION_TOKEN,
+        api_endpoint=ASTRA_DB_API_ENDPOINT,
+        collection_name="test",  # 替换为您的集合名称your_collection_name
+        embedding_dimension=1536,  # 嵌入维度，根据您使用的模型可能需要调整
+    )
+    storage_context = StorageContext.from_defaults(vector_store=astra_db_store)
+
+    index = VectorStoreIndex.from_vector_store(astra_db_store)
+
+    # 转换为查询引擎
+    query_engine = index.as_query_engine()
+
+    # 执行查询
+    query_string = "For MSFT. Evaluate the capital allocation strategy including details on dividends, share repurchase plans, and significant investments outlined."
+    response = query_engine.query(query_string)
+
+    print("查询结果:", response.response)
+    return response.response
+
+
 # 如果这是一个独立脚本，直接调用函数
 if __name__ == "__main__":
     store_data_in_db()
