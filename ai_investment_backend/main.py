@@ -1,5 +1,6 @@
 from glob import escape
-from flask import Flask
+from flask import Flask, request, jsonify
+from ai_pipline import store_data_in_db, query_data_in_db
 from company_outlook import get_company_outlook
 from company_social_sentiment import get_social_sentiment_data
 from company_info import get_company_info_data
@@ -16,12 +17,22 @@ app = Flask(__name__)
 
 @app.post("/company/<company_symbol>")
 def update_company(company_symbol):
+    store_data_in_db(company_symbol)
     return f"Updating the company data for {escape(company_symbol)}"
 
 
-@app.get("/company_report/<company_symbol>")
-def retrieve_company_report(company_symbol):
-    return f"Retrieving the company report of {escape(company_symbol)}"
+@app.post("/company_report")
+def retrieve_company_report():
+    data = request.get_json()
+    company_symbol = data.get('company_symbol')
+    query_data = data.get('query')
+    #in quarter 4, year 2023, Earnings Conference Call how MSFT helping customer use the breadth and depth of Microsoft Cloud. 
+    #"-in quarter 4, year 2023, how LinkedIn's revenue and detail --give everything about linkedin  ----do not give me the name of people just talk about the event --- give some number to supoort answer"
+    report = query_data_in_db(query_data)
+
+    #query_data_in_db("-in quarter 4, year 2023, Earnings Conference Call how MSFT helping customer use the breadth and depth of Microsoft Cloud. ----do not give me the name of people just talk about the event --- give some number to supoort answer")
+    return jsonify({"message": f"Retrieving the company report for {company_symbol}", "report": report})
+
 
 
 @app.post("/request_info")

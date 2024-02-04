@@ -6,10 +6,17 @@ from IPython.display import Markdown, display
 from dotenv import load_dotenv
 from llama_index.vector_stores import AstraDBVectorStore
 
+from info_aggregatpr import generate_all_company_data
 
-def store_data_in_db():
+
+def store_data_in_db(company_symbol):
     # 加载环境变量
     load_dotenv()
+    
+    FMP_API_KEY = os.getenv("FMP_API_KEY")
+
+    
+    generate_all_company_data(company_symbol, FMP_API_KEY)
 
     # 从环境变量获取数据库配置
     ASTRA_DB_APPLICATION_TOKEN = os.getenv("ASTRA_DB_APPLICATION_TOKEN")
@@ -19,7 +26,7 @@ def store_data_in_db():
     astra_db_store = AstraDBVectorStore(
         token=ASTRA_DB_APPLICATION_TOKEN,
         api_endpoint=ASTRA_DB_API_ENDPOINT,
-        collection_name="your_collection_name",  # 替换为你的集合名称
+        collection_name="test2",  # 替换为你的集合名称
         embedding_dimension=1536,  # 根据你使用的模型可能需要调整
     )
 
@@ -37,7 +44,7 @@ def store_data_in_db():
     print("文档已成功存储到数据库。")
 
 
-def query_data_in_db():
+def query_data_in_db(query_string):
 
     # 从环境变量获取数据库配置
     ASTRA_DB_APPLICATION_TOKEN = os.getenv("ASTRA_DB_APPLICATION_TOKEN")
@@ -47,7 +54,7 @@ def query_data_in_db():
     astra_db_store = AstraDBVectorStore(
         token=ASTRA_DB_APPLICATION_TOKEN,
         api_endpoint=ASTRA_DB_API_ENDPOINT,
-        collection_name="test",  # 替换为您的集合名称your_collection_name
+        collection_name="test2",  # 替换为您的集合名称your_collection_name
         embedding_dimension=1536,  # 嵌入维度，根据您使用的模型可能需要调整
     )
     storage_context = StorageContext.from_defaults(vector_store=astra_db_store)
@@ -58,7 +65,7 @@ def query_data_in_db():
     query_engine = index.as_query_engine()
 
     # 执行查询
-    query_string = "For MSFT. Evaluate the capital allocation strategy including details on dividends, share repurchase plans, and significant investments outlined."
+    # query_string = "For MSFT. Evaluate the capital allocation strategy including details on dividends, share repurchase plans, and significant investments outlined."
     response = query_engine.query(query_string)
 
     print("查询结果:", response.response)
