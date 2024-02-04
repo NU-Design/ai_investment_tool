@@ -1,5 +1,8 @@
 from glob import escape
 from flask import Flask
+from company_outlook import get_company_outlook
+import os
+from dotenv import load_dotenv
 
 
 app = Flask(__name__)
@@ -18,7 +21,9 @@ def request_company_info(company_symbol):
 
 @app.route('/')
 def index():
-    return 'Index Page'
+    FMP_API_KEY = os.getenv("FMP_API_KEY")
+    company_symbol = "APPL"
+    return get_company_outlook(company_symbol, FMP_API_KEY)
 
 @app.route('/hello/<word>')
 def hello(word):
