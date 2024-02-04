@@ -15,7 +15,7 @@ const ChatbotComponent = ({ triggerIconUrl, companySymbol }) => {
     if (isOpen && messages.length === 0) {
       const welcomeMessage = {
         sender: "bot",
-        text: "Hello! How can I help you today?",
+        text: "Hello! I am your private YMYC AI investment advisor.\n\n I only answer questions based on our credible sources and data.",
       };
       setMessages([welcomeMessage]);
     }
