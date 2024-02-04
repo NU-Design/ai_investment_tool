@@ -12,19 +12,23 @@ from dotenv import load_dotenv
 
 app = Flask(__name__)
 
-@app.post('/company/<company_symbol>')
+
+@app.post("/company/<company_symbol>")
 def update_company(company_symbol):
-    return f'Updating the company data for {escape(company_symbol)}'
+    return f"Updating the company data for {escape(company_symbol)}"
 
-@app.get('/company_report/<company_symbol>')
+
+@app.get("/company_report/<company_symbol>")
 def retrieve_company_report(company_symbol):
-    return f'Retrieving the company report of {escape(company_symbol)}'
+    return f"Retrieving the company report of {escape(company_symbol)}"
 
-@app.post('/request_info')
+
+@app.post("/request_info")
 def request_info():
-    return f'Requsting the info.'
+    return f"Requsting the info."
 
-@app.route('/')
+
+@app.route("/")
 def index():
     FMP_API_KEY = os.getenv("FMP_API_KEY")
     company_symbol = "AAPL"
@@ -37,6 +41,7 @@ def index():
 
     return get_analyst_estimate(company_symbol, FMP_API_KEY)
    
-@app.route('/hello/<word>')
+
+@app.route("/hello/<word>")
 def hello(word):
-    return f'Company: {escape(word)}'
+    return f"Company: {escape(word)}"
