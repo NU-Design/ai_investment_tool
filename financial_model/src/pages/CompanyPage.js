@@ -116,7 +116,7 @@ const CompanyPage = () => {
           {/* Separate chart and news list with margin */}
           <CompanyDescription symbol={symbol} />
         </Box>
-        <ChatbotComponent />
+        {symbol && <ChatbotComponent companySymbol={symbol} />}
       </div>
 
       {/* Right 1/3 news section */}
