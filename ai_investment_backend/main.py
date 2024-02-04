@@ -1,30 +1,25 @@
 from glob import escape
 from flask import Flask
-from earnings_call import get_earnings_call_data
-import os
-from dotenv import load_dotenv
 
-load_dotenv()
 
 app = Flask(__name__)
 
+@app.post('/company/<company_symbol>')
+def update_company(company_symbol):
+    return f'Updating the company data for {escape(company_symbol)}'
 
-@app.post("/company/<company_name>")
-def update_company(company_name):
-    return f"Updating company: {escape(company_name)}"
+@app.get('/company_report/<company_symbol>')
+def retrieve_company_report(company_symbol):
+    return f'Retrieving the company report of {escape(company_symbol)}'
 
+@app.post('/company_info/<company_symbol>')
+def request_company_info(company_symbol):
+    return f'Requsting the company info for {escape(company_symbol)}'
 
-@app.get("/company/<company_name>")
-def display_company(company_name):
-    return f"Company: {escape(company_name)}"
-
-
-@app.route("/")
+@app.route('/')
 def index():
-    FMP_API_KEY = os.getenv("FMP_API_KEY")
-    return get_earnings_call_data("AAPL", FMP_API_KEY)
+    return 'Index Page'
 
-
-@app.route("/hello/")
-def hello():
-    return "Hello, World"
+@app.route('/hello/<word>')
+def hello(word):
+    return f'Company: {escape(word)}'
