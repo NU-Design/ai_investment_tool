@@ -31,7 +31,7 @@ const CompanyNewsHeadlineList = ({ company_symbol }) => {
   }, [company_symbol]);
 
   return (
-    <div style={{ width: "70vw",textAlign:"left" }}>
+    <div style={{ margin: "0 auto", textAlign: "left" }}>
       <ul>
         {newsData.map((newsItem, index) => (
           <CompanyNewsHeadline key={index} news={newsItem} />

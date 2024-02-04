@@ -5,6 +5,7 @@ import { getOneCompanyQuotes } from "../services/CompanyDataApi";
 import CompanyDescription from "../modules/CompanyDescription";
 
 import Box from "@mui/material/Box"; // Import Box from MUI
+import { Grid } from "@mui/material";
 
 import CompanyNewsHeadlineList from "../modules/NewsDisplay";
 import ChatbotComponent from "../Component/ChatBox";
@@ -38,29 +39,37 @@ const CompanyPage = () => {
   const companyName = symbolToCompanyName[symbol] || symbol;
 
   return (
-    <Box sx={{ padding: 2 }}>
-      {" "}
-      {/* Use Box to wrap your content with some padding */}
-      <p> </p>
-      <ChatbotComponent companySymbol={symbol} />
-      <h1>{companyName}</h1>
-      <Box sx={{ marginY: 2 }}>
-        {" "}
-        {/* Separate chart and news list with margin */}
-        <CompanyChart companySymbol={symbol} />
-      </Box>
-      <Box sx={{ marginY: 2 }}>
-        {" "}
-        {/* Additional separation for clarity */}
+    <div style={{ display: "flex", flexDirection: "row", height: "100vh" }}>
+      {/* Left 2/3 content */}
+      <div style={{ flex: 3, overflowY: "auto", padding: "20px" }}>
+        <ChatbotComponent companySymbol={symbol} />
+        <h1>{companyName}</h1>
+        <Box>
+          {" "}
+          {/* Separate chart and news list with margin */}
+          <CompanyChart companySymbol={symbol} />
+        </Box>
+        <Box>
+          {" "}
+          {/* Separate chart and news list with margin */}
+          <CompanyDescription symbol={symbol} />
+        </Box>
+        <ChatbotComponent />
+      </div>
+
+      {/* Right 1/3 news section */}
+      <div
+        style={{
+          flex: 1,
+          overflowY: "auto",
+          overflowX: "hidden",
+          padding: "20px",
+        }}
+      >
+        <h3>Recent News</h3>
         <CompanyNewsHeadlineList company_symbol={symbol} />
-      </Box>
-      <Box sx={{ marginY: 2 }}>
-        {" "}
-        {/* Separate chart and news list with margin */}
-        <CompanyDescription symbol={symbol} />
-      </Box>
-      <ChatbotComponent />
-    </Box>
+      </div>
+    </div>
   );
 };
 

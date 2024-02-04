@@ -38,10 +38,10 @@
 }
 
 body {
-  display: flex;
-  justify-content: center; 
-  align-items: center; 
-  text-align: left;
+  /* display: flex;
+  justify-content: center; */
+  /* align-items: center; 
+  text-align: left; */
   margin: 0;
   background-color: #282c34;
   color: white;
