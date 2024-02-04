@@ -15,17 +15,18 @@ const CompanyList = () => {
 
   return (
     <div className="companyList">
-      <table className="companyTable">
-        <thead className="companyTableHead">
+      <h1 style={{ margin: '1em' }}>Company List</h1>
+      <table className="table table-hover">
+        <thead className="thead table-dark">
           <tr>
-            <th>NAME</th>
-            <th>TAGS</th>
-            <th>ANALYSIS</th>
+            <th scope="col">NAME</th>
+            <th scope="col">TAGS</th>
+            <th scope="col">ANALYSIS</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody  className="thead">
           {companies.map((company, index) => (
-            <tr key={index} className="companyTableData">
+            <tr key={index}>
               <td>{company.companyInfo.company_name}</td>
               <td>
                 {company.companyInfo.tags
@@ -34,7 +35,7 @@ const CompanyList = () => {
                   .join(", ")}
               </td>
               <td>
-                <Link to={`/${company.companyInfo.company_symbol}`}>
+                <Link to={`/${company.companyInfo.company_symbol}`} className="btn btn-dark">
                   {company.companyInfo.company_name}
                 </Link>
               </td>

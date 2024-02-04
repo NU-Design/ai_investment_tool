@@ -44,7 +44,7 @@ const CompanyPage = () => {
 
       <CompanyChart companySymbol={symbol} />
       <Button variant="outlined" onClick={handleClickOpen}>
-        Open Dialog
+        ASK ME
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>{"Use Google's location service?"}</DialogTitle>
