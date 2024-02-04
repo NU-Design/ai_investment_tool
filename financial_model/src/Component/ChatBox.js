@@ -73,9 +73,9 @@ const ChatbotComponent = ({ triggerIconUrl }) => {
       {isOpen && (
         <div
           style={{
-            width: 600,
-            height: 800,
-            backgroundColor: "lightblue",
+            width: 800,
+            height: 600,
+            backgroundColor: "#3B3F48",
             padding: 20,
             borderRadius: "5px",
             boxShadow: "0 0 10px rgba(0,0,0,0.5)",
@@ -98,7 +98,7 @@ const ChatbotComponent = ({ triggerIconUrl }) => {
             style={{
               height: "85%",
               overflowY: "auto",
-              backgroundColor: "lightblue",
+              backgroundColor: "#3B3F48",
               padding: 5,
             }}>
             {messages.map((msg, index) => (
@@ -112,7 +112,7 @@ const ChatbotComponent = ({ triggerIconUrl }) => {
                 }}>
                 <p
                   style={{
-                    background: msg.sender === "user" ? "#BBBEC7" : "#E6E6FA",
+                    background: msg.sender === "user" ? "#e3a738" : "#adade8",
                     display: "inline-block",
                     padding: "10px 15px",
                     borderRadius: "20px",
