@@ -51,7 +51,7 @@ index = VectorStoreIndex.from_vector_store(astra_db_store)
 query_engine = index.as_query_engine()
 
 # 执行查询
-query_string = "As a invester give a summery of apple future plan"
+query_string = "Highlight the new product developments, innovations, and research and development (R&D) efforts discussed in the earnings calls, including any specific project mentions or investment allocations.for AAPL"
 response = query_engine.query(query_string)
 
 print("查询结果:", response.response)

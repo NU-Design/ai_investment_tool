@@ -1,5 +1,6 @@
 from glob import escape
 from flask import Flask
+from ai_pipline import store_data_in_db
 from company_outlook import get_company_outlook
 from company_social_sentiment import get_social_sentiment_data
 from company_info import get_company_info_data
