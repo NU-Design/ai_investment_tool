@@ -23,12 +23,11 @@ const CompanyDescription = ({ symbol }) => {
         width: "70vw",
         margin: "0 auto",
         justifyContent: "center",
-      }}
-    >
+      }}>
       <p></p>
       <h3>AI Company Description </h3>
       <p>{companyDescription}</p>
-      <h3>Company Position</h3>
+      <h3>Industry Position</h3>
       <p>{companyPosition}</p>
     </div>
   );
