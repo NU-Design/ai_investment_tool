@@ -68,7 +68,7 @@ def query_data_in_db(query_string, company_symbol):
     query_string = (
         f"For {company_symbol} "
         + query_string
-        + " ----do not give me the name of people just talk about the event --- give some number to supoort answer ---Prioritize quantitative answers with number -- Give some sensory data of financial reports, sentiment analysis data --more than 15 sentence to explain"
+        + " ----do not give me the name of people just talk about the event --- give some number to supoort answer ---Prioritize quantitative answers with number -- Give some sensory data of financial reports, sentiment analysis data"
     )
     print(query_string)
     response = query_engine.query(query_string)
